@@ -4,7 +4,6 @@
 
 <main>
     <TextEditor />
-    <p>some text</p>
 </main>
 
 <style>
