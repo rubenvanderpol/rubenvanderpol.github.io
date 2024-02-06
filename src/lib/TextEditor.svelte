@@ -1,4 +1,5 @@
 <script>
+    import { onMount } from 'svelte';
     import {RefText } from '../assets/textreference';
 
     /** @type {HTMLParagraphElement} */
@@ -14,16 +15,15 @@
         {
             let sel = window.getSelection();
             let range = sel.getRangeAt(0);
-            console.log(sel, range);
         }
     }
 
     let t = new RefText(1);
     let text = t.plainText;
     let id = t.id;
-
+    
     const save = () => {
-      let savedText = textElement.innerText;
+      let savedText = textElement.innerHTML;
       t.saveText(savedText);
     }
 
@@ -54,7 +54,7 @@
         tabindex="-1" 
         on:keydown={() =>selectText()}
         on:click={() => selectText()}>
-        {text}
+        {@html text}
     </p>
   </div>
 
