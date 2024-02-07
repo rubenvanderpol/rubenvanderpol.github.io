@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from 'svelte';
     import {RefText } from '../assets/textreference';
 
     /** @type {HTMLParagraphElement} */
@@ -20,15 +19,10 @@
 
     let t = new RefText(1);
     let text = t.plainText;
-    let id = t.id;
-    
+
     const save = () => {
       let savedText = textElement.innerHTML;
       t.saveText(savedText);
-    }
-
-    const link = () => {
-        
     }
 
   </script>
@@ -39,11 +33,11 @@
   <button on:click={save}> 
     Save
   </button>
-  {#if editMode}
+  <!-- {#if editMode}
   <button>
     Link
   </button>
-  {/if}
+  {/if} -->
 
   <div class="text-editor" id="text-editor{t.id}">
     {#if t.title !== undefined}
