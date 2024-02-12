@@ -1,41 +1,34 @@
 <script>
-    import { onMount } from "svelte";
     import {
-        referenceRepository,
-        referenceDto,
+        ireferenceRepository, referenceDto,
     } from "../assets/Infrastructure/referenceRepository";
-
     import { createEventDispatcher } from "svelte";
+    import { Services } from "../assets/services";
     const dispatch = createEventDispatcher();
+    
+    /** @type {ireferenceRepository} */
+    let myRepos = Services.getReferenceRepos();
 
-    /** @type {referenceRepository} */
-    let myRepos = new referenceRepository();
+     /**
+     * @type {referenceDto[]}
+     */
+    let references = myRepos.references;
+    myRepos.readableReferences.subscribe(s => references = s);
 </script>
 
-<div class="flex-container">
-    {#each myRepos.referenceNames as title}
+
+    {#each references as reference}
         <div class="reference-item">
             <button
                 on:click={() => {
-                    console.log("clicked", title);
-                    dispatch("notify", title);
-                }}>{title}
+                    console.log(reference.title);
+                    dispatch("notify", reference);
+                }}>{reference.title}
             </button>
         </div>
     {/each}
-</div>
 
 <style>
-    .flex-container {
-        display: flex;
-        flex-direction: row;
-        margin: 1px;
-    }
-
-    .reference-item {
-        border: 1px solid black;
-    }
-
     p {
         margin: 3px 3px 3px 3px;
         font-family: "Comic Sans MS", cursive;

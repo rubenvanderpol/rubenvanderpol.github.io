@@ -23,8 +23,7 @@ export class RefText {
      */
     constructor(id){
         this.id = id;
-        this.plainText = localStorage.getItem('RefText') ?? 
-            'new text';
+        this.plainText = localStorage.getItem('RefText') ?? 'new text';
     }
 
     /**
